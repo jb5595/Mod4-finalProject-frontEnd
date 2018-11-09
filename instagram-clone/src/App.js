@@ -33,12 +33,22 @@ class App extends Component {
             <Route path = "/createPost" render={routerProps => <PostFormContainer currentUser = {this.state.currentUser}/>} />
             <Route path='/posts/:id' render={(props)=> {
               let postId = props.match.params.id
-              return <PostShowPage postId = {postId}/>
+              if (this.state.currentUser){
+                return <PostShowPage currentUser = {this.state.currentUser} postId = {postId}/>
+              }
+              else{
+                return null
+              }
 
             }} />
             <Route path='/users/:id' render={(props)=> {
               let userId = props.match.params.id
-              return <ProfilePage userId = {this.state.currentUser.id}/>
+              if (this.state.currentUser){
+                return <ProfilePage userId = {this.state.currentUser.id}/>
+              }
+              else{
+                return null
+              }
 
             }} />
           </div>

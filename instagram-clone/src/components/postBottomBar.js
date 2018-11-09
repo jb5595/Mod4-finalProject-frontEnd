@@ -12,7 +12,7 @@ class PostBottomBar extends React.Component{
             <button>Bookmark </button>
           </div>
           <div className ="row">
-            <p><b>100 Likes</b></p>
+            <p><b>{this.props.likes} Likes</b></p>
           </div>
           <div className ="row">
             <p><b>{this.props.user.user_name}</b> Caption </p>

@@ -10,7 +10,6 @@ library.add(faCameraRetro)
 class PostFormContainer extends React.Component{
     constructor(props){
       super(props)
-      console.log()
       this.state ={
         file: null,
         formData: null
