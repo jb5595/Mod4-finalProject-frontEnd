@@ -45,13 +45,9 @@ class App extends Component {
             }} />
             <Route path='/users/:id' render={(props)=> {
               let userId = props.match.params.id
-              if (this.state.currentUser){
-                return <ProfilePage userId = {this.state.currentUser.id}/>
-              }
-              else{
-                return null
-              }
+              return <ProfilePage userId = {userId}/>
             }} />
+            <Route path='/profile' render={(props)=>this.state.currentUser?<ProfilePage userId = {this.state.currentUser.id}/>:null}/>
             <Route path='/login' render={(props)=> <LoginPage/>}/>
             <Route path='/createuser' render={(props)=> <CreateUserPage/>}/>
           </div>

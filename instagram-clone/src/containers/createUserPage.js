@@ -1,6 +1,8 @@
 import '../WelcomeLoginCreateUser.css';
 import {Link} from 'react-router-dom'
 import CreateUserForm from '../components/createUserForm'
+import { Route, Redirect } from 'react-router'
+import {browserHistory} from 'react-router';
 
 import React from "react"
 
@@ -10,6 +12,7 @@ class CreateUserPage extends React.Component{
   constructor(props){
     super(props)
     this.state = {
+      created_user: null,
       image_preview:null,
       user: {
         user_name: null,
@@ -45,6 +48,7 @@ class CreateUserPage extends React.Component{
     body.append('first_name', this.state.user.first_name)
     body.append('last_name', this.state.user.last_name)
     body.append('bio', this.state.user.bio)
+    body.append('password', this.state.user.password)
     body.append("profile_picture", this.state.user.profile_picture, this.state.user.profile_picture.name)
     fetch(PostUserURL,{
       method: "POST",
@@ -53,13 +57,21 @@ class CreateUserPage extends React.Component{
       },
       body: body
     })
+    .then(resp=> resp.json())
+    .then(user => this.setState({
+      created_user: user
+    }))
 
   }
   render(){
+    if (this.state.created_user){
+      console.log(this.state.created_user.user)
+      return <Redirect to={`/users/${this.state.created_user.user.id}`}/>
+    }
     return(
       <div className = "create-user-container">
         <h3>Create Account </h3>
-        <form>
+        <form onSubmit = {this.handleSubmit}>
           <div>
             <img
             className = "profile-picture-upload"
@@ -71,7 +83,7 @@ class CreateUserPage extends React.Component{
             type = "file"
             onChange = {this.handleFileUpload}/>
           </div>
-          <button className = "image-upload-button btn btn-primary"
+          <button className = "profile-upload-button btn btn-primary"
                   onClick={(e)=>{
                     e.preventDefault()
                     this.fileInput.click()}}>

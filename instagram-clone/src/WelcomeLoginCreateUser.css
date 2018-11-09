@@ -19,6 +19,9 @@
 .welcome-page-subcontent{
   margin-top: 7vw;
 }
+.profile-upload-button{
+  margin-top: 30px;
+}
 
 .profile-picture-upload{
   height: 150px;
@@ -29,5 +32,8 @@
 }
 
 .create-user-form-top-margin{
-  margin-top: 80px;
+  margin-top: 30px;
+}
+.login-button{
+  float: left;
 }

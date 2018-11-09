@@ -31,7 +31,7 @@ class PostCard extends React.Component{
         <img className = "post-show-image"src = {BaseUrl + this.props.post.image.url}/>
         <PostBottomBar likes = {this.state.likes.length} handleLike = {this.handleLike} user = {this.props.post.user}/>
         <div className = "comment-well">
-          {this.props.post.comments.map((comment) => <Comment key = {comment.id} comment = {comment}/>)}
+          {this.state.comments.map((comment) => <Comment key = {comment.id} comment = {comment}/>)}
           <CommentForm handleSubmit = {this.handleCommentSubmit} handleCommentChange = {this.handleCommentChange}/>
         </div>
       </div>
@@ -49,7 +49,8 @@ class PostCard extends React.Component{
       body: JSON.stringify(body)
     })
     .then(resp => resp.json())
-    .then(comment => this.setState({comments:[...this.state.comments, comment]}))
+    .then(comment => this.setState(
+      {comments:[...this.state.comments, comment]}))
 
   }
   handleCommentChange = (e) =>{
