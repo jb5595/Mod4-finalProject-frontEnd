@@ -1,0 +1,33 @@
+.welcome-page-container{
+  margin-top: 7vw;
+  background-color: grey;
+  border-radius: 10px;
+  color: white;
+  border: black solid 1px;
+  max-height: 300px;
+  height: 40vw;
+  width: 35vw;
+  min-height: 200px;
+  min-width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.welcome-page-header{
+  margin-top: 40px;
+}
+.welcome-page-subcontent{
+  margin-top: 7vw;
+}
+
+.profile-picture-upload{
+  height: 150px;
+  width: 150px;
+}
+.form-label{
+  float: left;
+}
+
+.create-user-form-top-margin{
+  margin-top: 80px;
+}

@@ -6,7 +6,9 @@ import ProfilePage from "./containers/ProfilePage"
 import NavBar from "./components/navbar"
 import PostFormContainer from "./containers/postFormContainer"
 import PostShowPage from "./containers/postShowPage"
-
+import WelcomePage from "./components/welcomePage"
+import LoginPage from "./containers/LoginPage"
+import CreateUserPage from "./containers/createUserPage"
 
 const BaseUserURL = "http://localhost:3000/api/v1/users/"
 
@@ -27,9 +29,9 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar/>
+          {this.state.currentUser ? <NavBar currentUser = {this.state.currentUser}/> : null}
           <div className = "container">
-            <Route exact path="/"  render={(routerProps) => this.state.currentUser? <ProfilePage userId = {this.state.currentUser.id}/> :null } />
+            <Route exact path="/"  render={(routerProps) => this.state.currentUser ? <WelcomePage/> :<WelcomePage/> } />
             <Route path = "/createPost" render={routerProps => <PostFormContainer currentUser = {this.state.currentUser}/>} />
             <Route path='/posts/:id' render={(props)=> {
               let postId = props.match.params.id
@@ -49,8 +51,9 @@ class App extends Component {
               else{
                 return null
               }
-
             }} />
+            <Route path='/login' render={(props)=> <LoginPage/>}/>
+            <Route path='/createuser' render={(props)=> <CreateUserPage/>}/>
           </div>
         </div>
       </Router>
