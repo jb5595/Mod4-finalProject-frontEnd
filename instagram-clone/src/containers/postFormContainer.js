@@ -1,4 +1,6 @@
 import React from "react"
+import { Route, Redirect } from 'react-router'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +14,8 @@ class PostFormContainer extends React.Component{
       super(props)
       this.state ={
         file: null,
-        formData: null
+        formData: null,
+        newPost: null
       }
     }
     fileSelectedHandler = (e) =>{
@@ -26,6 +29,7 @@ class PostFormContainer extends React.Component{
       })
     }
     fileUploadHandler = (e) => {
+      e.preventDefault()
       let body = this.state.formData
       fetch("http://localhost:3000/api/v1/posts/",{
         method: "POST",
@@ -34,13 +38,19 @@ class PostFormContainer extends React.Component{
         },
         body: body
       })
+      .then(resp=>resp.json())
+      .then(post =>this.setState({newPost:post}))
     }
     render(){
+      if (this.state.newPost){
+        return <Redirect to={`/posts/${this.state.newPost.id}`}/>
+
+      }
       return(
         <div>
         <div className = "row">
           <div className = "offset-10">
-            {this.state.file?<Link to = "/"><button className = "upload-image-button" onClick = {this.fileUploadHandler}>Next</button></Link>:null}
+            {this.state.file?<button className = "upload-image-button" onClick = {this.fileUploadHandler}>Next</button>:null}
           </div>
         </div>
           <div className = "image-upload-container">

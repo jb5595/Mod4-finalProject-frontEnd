@@ -2,7 +2,6 @@ import '../WelcomeLoginCreateUser.css';
 import {Link} from 'react-router-dom'
 import CreateUserForm from '../components/createUserForm'
 import { Route, Redirect } from 'react-router'
-import {browserHistory} from 'react-router';
 
 import React from "react"
 
@@ -58,14 +57,14 @@ class CreateUserPage extends React.Component{
       body: body
     })
     .then(resp=> resp.json())
-    .then(user => this.setState({
-      created_user: user
-    }))
+    .then(user => {
+      this.props.setCurrentUser(user)
+    })
 
   }
   render(){
     if (this.state.created_user){
-      console.log(this.state.created_user.user)
+      debugger
       return <Redirect to={`/users/${this.state.created_user.user.id}`}/>
     }
     return(
@@ -112,6 +111,7 @@ class CreateUserPage extends React.Component{
             </div>
           </div>
           <button className = "btn btn-primary"> Create User </button>
+          <Link to = "/"><button className = "btn btn-primary"> Go Back </button></Link>
         </form>
        </div>
     )

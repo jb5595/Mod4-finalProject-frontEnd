@@ -40,7 +40,6 @@ class LoginPage extends React.Component{
   }
 
   handleSubmit = (e) =>{
-    console.log(this.state)
     e.preventDefault()
     fetch(LoginUrl,{
       method:"POST",
@@ -50,6 +49,8 @@ class LoginPage extends React.Component{
       },
       body: JSON.stringify(this.state)
     })
+    .then(response=>response.json())
+    .then(user=>this.props.setCurrentUser(user))
   }
 }
 export default LoginPage
