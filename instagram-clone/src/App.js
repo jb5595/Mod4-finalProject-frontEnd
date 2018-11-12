@@ -10,6 +10,8 @@ import WelcomePage from "./components/welcomePage"
 import LoginPage from "./containers/LoginPage"
 import CreateUserPage from "./containers/createUserPage"
 import ExploreFeed from "./containers/exploreFeed"
+import Feed from "./containers/Feed"
+import EditUserPage from "./containers/editUserPage"
 
 const BaseUserURL = "http://localhost:3000/api/v1/users/"
 
@@ -22,6 +24,7 @@ class App extends Component {
   }
 
   setCurrentUser = (data) =>{
+
     this.setState({currentUser:data})
   }
 
@@ -54,8 +57,13 @@ class App extends Component {
         <Route path='/profile' render={(props)=><ProfilePage userId = {this.state.currentUser.id} currentUser = {this.state.currentUser}/>}/>
         <Route path = "/explore" render = {(props) => <ExploreFeed/>}/>
         <Route path = "/createPost" render={routerProps => <PostFormContainer currentUser = {this.state.currentUser}/>} />
+        <Route path = "/feed" render = {props=><Feed currentUser = {this.state.currentUser}/>}/>
         <Route path = "/login" render = {props=><Redirect to="/profile"/>}/>
         <Route path = "/createuser" render = {props=><Redirect to="/profile"/>}/>
+        <Route path='/editprofile/:id' render={(props)=> {
+             let userId = props.match.params.id
+             return <EditUserPage setCurrentUser={this.setCurrentUser} currentUser = {this.state.currentUser}/> }} />
+
 
         </React.Fragment>
       )
@@ -70,6 +78,8 @@ class App extends Component {
             <Route path = "/posts" render = {props=><Redirect to="/"/>}/>
             <Route path = "/profile" render = {props=><Redirect to="/"/>}/>
             <Route path = "/createpost" render = {props=><Redirect to="/"/>}/>
+            <Route path = "/feed" render = {props=><Redirect to="/"/>}/>
+            <Route path='/editprofile/:id' render={(props)=> <Redirect to="/"/>}/>
           </React.Fragment>
 
     )

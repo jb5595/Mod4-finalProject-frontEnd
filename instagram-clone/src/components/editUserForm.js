@@ -1,8 +1,9 @@
 import {Link} from 'react-router-dom'
 
 import React from "react"
+const BaseUrl = "http://localhost:3000"
 
-class CreateUserForm extends React.Component{
+class EditUserForm extends React.Component{
 
   render(){
     return(
@@ -11,7 +12,7 @@ class CreateUserForm extends React.Component{
           <div>
             <img
             className = "profile-picture-upload"
-            src = {this.props.image_preview ? this.props.image_preview :"https://via.placeholder.com/150"}/>
+            src = {this.props.image_preview ? this.props.image_preview :BaseUrl+this.props.user.profile_picture.url}/>
             <input
             name = "profile_picture"
             style = {{display:"none"}}
@@ -23,32 +24,28 @@ class CreateUserForm extends React.Component{
                   onClick={(e)=>{
                     e.preventDefault()
                     this.fileInput.click()}}>
-                    {this.props.image_preview ?"Change Photo" : "Upload Profile Photo" }
+                    Change Profile Photo
           </button>
           <div className = "create-user-form-top-margin">
             <div className = "form-group">
               <label className = "form-label" htmlFor = "user_name">Username</label>
-              <input onChange = {this.props.handleInputChange} className = "form-control" type = "text" name = "user_name" placeholder = "Username"/>
-            </div>
-            <div className = "form-group">
-              <label className = "form-label" htmlFor = "user_name">Password</label>
-              <input onChange = {this.props.handleInputChange} className = "form-control" type = "password" name = "password" placeholder = "Password"/>
+              <input onChange = {this.props.handleInputChange} className = "form-control" value = {this.props.user.user_name} type = "text" name = "user_name" placeholder = "Username"/>
             </div>
             <div className = "form-group">
               <label className = "form-label" htmlFor = "first_name">First Name</label>
-              <input onChange = {this.props.handleInputChange} className = "form-control" type = "text" name = "first_name" placeholder = "First Name"/>
+              <input onChange = {this.props.handleInputChange} className = "form-control" value = {this.props.user.first_name} type = "text" name = "first_name" placeholder = "First Name"/>
             </div>
             <div className = "form-group">
               <label className = "form-label" htmlFor = "last_name">Last Name</label>
-              <input onChange = {this.props.handleInputChange} className = "form-control" type = "text" name = "last_name" placeholder = "Last Name"/>
+              <input onChange = {this.props.handleInputChange} className = "form-control" value = {this.props.user.last_name} type = "text" name = "last_name" placeholder = "Last Name"/>
             </div>
             <div className = "form-group">
               <label className = "form-label" htmlFor = "last_name">Bio</label>
-              <input onChange = {this.props.handleInputChange} className = "form-control" type = "textArea" name = "bio" placeholder = "Bio"/>
+              <input onChange = {this.props.handleInputChange} className = "form-control" value = {this.props.user.bio} type = "textArea" name = "bio" placeholder = "Bio"/>
             </div>
           </div>
-          <button className = "btn btn-primary"> Create User </button>
-          <Link to = "/"><button className = "btn btn-primary"> Go Back </button></Link>
+          <button className = "btn btn-primary"> Submit Changes </button>
+          <Link to = "/profile"><button className = "btn btn-primary"> Go Back </button></Link>
         </form>
 
       </React.Fragment>
@@ -57,4 +54,4 @@ class CreateUserForm extends React.Component{
 
 }
 
-export default CreateUserForm
+export default EditUserForm

@@ -5,6 +5,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 
+
 import {Link} from 'react-router-dom'
 
 library.add(faCameraRetro)
@@ -15,22 +16,31 @@ class PostFormContainer extends React.Component{
       this.state ={
         file: null,
         formData: null,
-        newPost: null
+        newPost: null,
+        fileUpload: null,
+        caption: null
       }
     }
-    fileSelectedHandler = (e) =>{
-      console.log(e.target.files[0])
-      const fd = new FormData()
-      fd.append("image", e.target.files[0], e.target.files[0].name)
-      fd.append("user_id", this.props.currentUser.id)
+    handleCaptionChange = (e) =>{
       this.setState({
-        file: URL.createObjectURL(e.target.files[0]),
-        formData: fd
+        [e.currentTarget.name]: e.currentTarget.value
       })
+    }
+    fileSelectedHandler = (e) =>{
+      if (e.target.files[0]){
+        this.setState({
+          file: URL.createObjectURL(e.target.files[0]),
+          fileUpload: e.target.files[0]
+        })
+      }
     }
     fileUploadHandler = (e) => {
       e.preventDefault()
-      let body = this.state.formData
+      const fd = new FormData()
+      fd.append("image", this.state.fileUpload, this.state.fileUpload.name)
+      fd.append("user_id", this.props.currentUser.id)
+      fd.append("caption", this.state.caption)
+      let body = fd
       fetch("http://localhost:3000/api/v1/posts/",{
         method: "POST",
         headers:{
@@ -50,7 +60,7 @@ class PostFormContainer extends React.Component{
         <div>
         <div className = "row">
           <div className = "offset-10">
-            {this.state.file?<button className = "upload-image-button" onClick = {this.fileUploadHandler}>Next</button>:null}
+            {this.state.file?<button className = "upload-image-button btn btn-primary " onClick = {this.fileUploadHandler}>Next</button>:null}
           </div>
         </div>
           <div className = "image-upload-container">
@@ -60,9 +70,10 @@ class PostFormContainer extends React.Component{
           style = {{display: 'none'}}
           type = "file"
           onChange = {this.fileSelectedHandler}/>
-          {this.state.file?null:<button className = "image-upload-button" onClick={()=>this.fileInput.click()}><FontAwesomeIcon icon="camera-retro" /></button>}
+          {this.state.file?null:<button className = "image-upload-button next-button btn btn-primary " onClick={()=>this.fileInput.click()}><FontAwesomeIcon icon="camera-retro" /></button>}
+          <input className = "caption-input form-control" onChange = {this.handleCaptionChange} name="caption" type = "text" placeholder = "Add a Caption"/>
           </div><br/>
-          {this.state.file?<button className = "upload-image-button" onClick={()=>this.fileInput.click()}>Change Image</button>:null}
+          {this.state.file?<button className = "btn btn-primary upload-image-button" onClick={()=>this.fileInput.click()}>Change Image</button>:null}
 
         </div>
       )

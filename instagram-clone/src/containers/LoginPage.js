@@ -10,13 +10,16 @@ class LoginPage extends React.Component{
     super(props)
     this.state = {
       user_name:null,
-      password:null
+      password:null,
+      errors: null
+
     }
   }
   render(){
     return(
       <div className = "login-container">
         <h3>Login</h3>
+        {this.state.errors?<p className = "alert alert-danger">Username or Password is Incorrect</p> : null}
         <form onSubmit = {this.handleSubmit}>
           <div className = "create-user-form-top-margin">
             <div className = "form-group">
@@ -50,7 +53,14 @@ class LoginPage extends React.Component{
       body: JSON.stringify(this.state)
     })
     .then(response=>response.json())
-    .then(user=>this.props.setCurrentUser(user))
-  }
+    .then(data=>{
+      if (data.error){
+        this.setState({errors:data.error})
+      }
+      else{
+      this.props.setCurrentUser(data)
+    }})
+    }
 }
+
 export default LoginPage

@@ -1,5 +1,7 @@
 import React from "react"
 import PostCard from "./postCard"
+
+
 const BasePostURl = "http://localhost:3000/api/v1/posts/"
 
 class PostShowPage extends React.Component{

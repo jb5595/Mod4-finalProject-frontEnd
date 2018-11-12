@@ -1,28 +1,24 @@
-import '../WelcomeLoginCreateUser.css';
-import CreateUserForm from '../components/createUserForm'
-import { Route, Redirect } from 'react-router'
-
 import React from "react"
+import EditUserForm from "../components/editUserForm"
+import { Route, Redirect } from 'react-router'
+const PatchUserURL = "http://localhost:3000/api/v1/users/"
 
-const PostUserURL = "http://localhost:3000/api/v1/users/"
+class EditUserPage extends React.Component{
 
-class CreateUserPage extends React.Component{
   constructor(props){
     super(props)
     this.state = {
       created_user: null,
       image_preview:null,
-      error:null,
       user: {
-        user_name: null,
-        first_name:null ,
-        last_name: null,
-        bio:null,
-        profile_picture: null
+        user_name: this.props.currentUser.user_name,
+        first_name: this.props.currentUser.first_name,
+        last_name: this.props.currentUser.last_name,
+        bio:this.props.currentUser.bio,
+        profile_picture: this.props.currentUser.profile_picture
       }
     }
   }
-
 
   handleInputChange = (e) => {
     this.setState({
@@ -43,15 +39,15 @@ class CreateUserPage extends React.Component{
   }
   handleSubmit = (e) => {
     e.preventDefault()
+    let url = PatchUserURL + this.props.currentUser.id
     let body = new FormData()
     body.append('user_name', this.state.user.user_name)
     body.append('first_name', this.state.user.first_name)
     body.append('last_name', this.state.user.last_name)
     body.append('bio', this.state.user.bio)
-    body.append('password', this.state.user.password)
     body.append("profile_picture", this.state.user.profile_picture, this.state.user.profile_picture.name)
-    fetch(PostUserURL,{
-      method: "POST",
+    fetch(url,{
+      method: "PATCH",
       headers:{
         Accept: "application/json"
       },
@@ -59,34 +55,29 @@ class CreateUserPage extends React.Component{
     })
     .then(resp=> resp.json())
     .then(data => {
-      debugger
-      if (data.error){
-        this.setState({errors:data.error})
-      }
-      else{
       this.props.setCurrentUser(data.user)
-    }
 
     })
 
   }
   render(){
-    if (this.state.created_user){
+    if (this.state.edited_user){
+      debugger
       return <Redirect to={`/users/${this.state.created_user.user.id}`}/>
     }
     return(
       <div className = "create-user-container">
         <h3>Create Account </h3>
-        {this.state.errors ? <p className = "alert alert-danger">Please Enter a Unique Username</p> : null}
-          <CreateUserForm
+          <EditUserForm
           handleSubmit = {this.handleSubmit}
           image_preview = {this.state.image_preview}
           handleFileUpload = {this.handleFileUpload}
           handleInputChange = {this.handleInputChange}
+          user = {this.state.user}
           />
        </div>
     )
   }
-
 }
-export default CreateUserPage
+
+export default EditUserPage

@@ -32,8 +32,10 @@
 }
 
 .create-user-form-top-margin{
-  margin-top: 30px;
 }
 .login-button{
   float: left;
+}
+.login-container{
+  margin-top: 120px;
 }

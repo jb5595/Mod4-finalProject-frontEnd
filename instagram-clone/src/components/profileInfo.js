@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from 'react-router-dom';
 
 class ProfileInfo extends React.Component {
   render(){
@@ -25,7 +26,7 @@ class ProfileInfo extends React.Component {
 
   renderProfileButton(){
     if (this.props.id == this.props.currentUser.id){
-      return <button className = "profile-info-text btn btn-outline-secondary btn-sm edit-profile-button">Edit Profile</button>
+      return <Link to = {`/editprofile/${this.props.currentUser.id}`}><button className = "profile-info-text btn btn-outline-secondary btn-sm edit-profile-button">Edit Profile</button></Link>
     }
     else{
       if(this.props.followers.find(user => user.id == this.props.currentUser.id)){

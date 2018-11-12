@@ -1,30 +1,60 @@
 
-.body{
+body{
   font-family: 'Roboto', sans-serif;
+  background-color: #FAFAFA;
 }
 .container{
   width: 65%;
+}
+.navbar{
+  border: solid 1px rgb(218, 218, 216);
+  background-color: white;
+  max-height: 66px;
+}
+.search-results-container{
+  text-align: left;
+  max-height: 67px;
+  position: absolute;
+  top: 113%;
+  overflow: scroll;
+  width: 15%;
+}
+.search-result{
+  width: 97%;
+  background-color: white;
+  border-bottom: solid .5px rgb(218, 218, 216);
+  padding-top: 14px;
+
+
+}
+.search-result-picture{
+  height: 30px;
+  width: 30px;
+  -webkit-border-radius: 50%;
+}
+
+.navbar-search-bar{
+  border-radius: 20px;
+  width: 25vw;
 }
 /*############ PROFILE PAGE ############### */
 
 /* Profile Top Info Section */
 .profile-page-top-container{
-  background-color: green;
   padding-top: 5%;
-
+  padding-bottom: 3%;
 }
 
 .profile-picture-container{
   /* width: 30%; */
-  background-color: red;
   padding-top: 3%;
 
 }
 .profile-picture{
   float: none;
   margin: 0 auto;
-  width: 50%;
-  height: 70%;
+  width: 14vw;
+  height: 14vw;
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
@@ -32,7 +62,6 @@
 }
 .profile-info-container{
   /* width: 65%; */
-  background-color: blue;
   padding-left: 5%;
   padding-top: 3%;
 }
@@ -41,10 +70,12 @@
   margin-bottom: .25rem;
 }
 .edit-profile-button{
-  padding: .25rem .5rem;
+  padding: .7vw .7vw;
   font-size: .875rem;
-  line-height: 1.5;
+  line-height: .5;
   border-radius: .2rem;
+  margin-top: 1vw;
+
 }
 .profile-info-margin{
   margin-right: 15px;
@@ -57,7 +88,9 @@
 /*Profile Photo Feed  */
 
 .feed-top-bar{
-  background-color: grey;
+  border-top: .1px solid grey;
+  margin-left: .1%;
+
 }
 .feed{
   padding-left: -5px;
@@ -85,6 +118,16 @@
   position: relative;
   text-align: center;
   color: white;
+  margin-top: 30px;
+  background-color: white;
+  width: 48vw;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 40px;
+  padding-bottom: 50px;
+  border-radius: 10px;
+  border: solid 1px rgb(218, 218, 216);
+
 }
 .image-upload-button{
   position: absolute;
@@ -97,21 +140,36 @@
   width: 45vw;
 }
 .upload-image-button{
+  margin-top: 17px;
 
 }
+.next-button{
+}
+.caption-input {
+  width: 90%;
+  margin: auto;
+  margin-top: 26px;
+  }
 /* ######## Image Show Page ############## */
-
+.post-card{
+  margin-top: 30px;
+  background-color: white;
+  padding: 0px;
+  width: 50vw;
+  border-radius: 10px;
+  border: .4px solid grey;
+}
 .post-show-image{
   width: 50vw;
   height: 40vw;
 }
 .post-top-bar{
-  background-color: grey;
   width: 50vw;
   margin: auto;
   padding-top: 1vw;
   border-radius: 5px 5px 0px 0px;
   padding-left: 1.5vw;
+  margin-top: 7px;
 }
 .post-profile-photo{
   height: 30px;
@@ -122,7 +180,6 @@
   margin-right: 10px;
 }
 .post-bottom-bar{
-  background-color: grey;
   width: 50vw;
   margin: auto;
   padding-top: 1vw;
@@ -131,24 +188,39 @@
 
 .comment-well{
   font-size:15px;
-  background-color: grey;
   width: 50vw;
   margin: auto;
   padding-left: 3vw;
 }
+.post-bottom-bar{
+
+}
+.comments{
+  border-bottom: solid 1px rgb(218, 218, 216);
+}
 .comment{
   margin-bottom: .3rem;
+  text-align: left;
+  padding-left: 0px;
 }
 .comment-form{
+  margin-top: 7px;
   width: 95%;
   margin-left: -1.2vw;
+  margin-top: 10px;
 }
 .comment-input{
   width:95%;
   border-radius:6px;
   margin-bottom: 15px;
+  border:none;
 }
-
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -158,6 +230,33 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.like-button-before-like{
+  margin-right: 20px;
+  font-size: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+}
+.like-button-before-like:hover{
+  color:red;
+}
+.after-bookmark{
+  color:grey;
+  font-size: 22px;
+}
+.before-bookmark{
+  color: black;
+  font-size: 22px;
+}
+.before-bookmark:hover{
+  color:grey;
+}
+.like-button-after-like{
+  margin-right: 20px;
+  font-size: 20px;
+  margin-bottom: 0px;
+  margin-left: 5px;
+  color:red;
 }
 
 .App-link {
