@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   setCurrentUser = (data) =>{
-
     this.setState({currentUser:data})
   }
 
@@ -70,7 +69,7 @@ class App extends Component {
     }
     else{
       return(
-          <React.Fragment>
+          <div className = "login-container">
             <Route exact path="/"  render={(routerProps) => <WelcomePage/>} />
             <Route path='/login' render={(props)=> <LoginPage setCurrentUser = {this.setCurrentUser}/>}/>
             <Route path='/createuser' render={(props)=> <CreateUserPage setCurrentUser = {this.setCurrentUser}/>}/>
@@ -80,8 +79,7 @@ class App extends Component {
             <Route path = "/createpost" render = {props=><Redirect to="/"/>}/>
             <Route path = "/feed" render = {props=><Redirect to="/"/>}/>
             <Route path='/editprofile/:id' render={(props)=> <Redirect to="/"/>}/>
-          </React.Fragment>
-
+          </div>
     )
     }
   }

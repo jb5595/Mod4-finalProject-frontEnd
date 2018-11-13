@@ -7,16 +7,12 @@ class WelcomePage extends React.Component{
   render(){
     return(
       <div className = "welcome-page-container">
-        <h3 className = "welcome-page-header">Welcome to Not-instagram </h3>
+        <h3 className = "welcome-page-header">Welcome to Grammable </h3>
         <div className = "welcome-page-subcontent">
-          <div className = "row">
-            <p className = "offset-1">New User? </p>
-            <p className = "offset-6">Existing User </p>
-          </div>
-          <div className = "row">
-            <Link to = "/createuser"><button className = "offset-1 btn btn-primary">Create An Account</button></Link>
-            <Link to = "/login" className = "offset-5" ><button className = "offset-5 btn btn-primary">Login</button></Link>
-          </div>
+            <h4 className = "welcome-text" >New User? </h4>
+            <Link to = "/createuser"><button className = "btn btn-primary">Create An Account</button></Link>
+            <h4 className = "welcome-text">Existing User </h4>
+            <Link to = "/login" className = "" ><button className = "btn btn-primary">Login</button></Link>
         </div>
       </div>
     )

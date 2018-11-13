@@ -11,6 +11,16 @@ body{
   background-color: white;
   max-height: 66px;
 }
+.add-post-icon{
+  font-size: 25px;
+}
+.nav-item{
+  text-decoration: none;
+  color: black;
+}
+.navbar-button{
+  margin-left: 20px;
+}
 .search-results-container{
   text-align: left;
   max-height: 67px;

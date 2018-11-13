@@ -71,20 +71,20 @@ class CreateUserPage extends React.Component{
 
   }
   render(){
-    if (this.state.created_user){
-      return <Redirect to={`/users/${this.state.created_user.user.id}`}/>
-    }
     return(
-      <div className = "create-user-container">
+      <div className = "welcome-page-container">
+        <div className = "create-user-form-container">
         <h3>Create Account </h3>
-        {this.state.errors ? <p className = "alert alert-danger">Please Enter a Unique Username</p> : null}
-          <CreateUserForm
-          handleSubmit = {this.handleSubmit}
-          image_preview = {this.state.image_preview}
-          handleFileUpload = {this.handleFileUpload}
-          handleInputChange = {this.handleInputChange}
-          />
+          {this.state.errors ? <p className = "alert alert-danger">Please Enter a Unique Username</p> : null}
+            <CreateUserForm
+            handleSubmit = {this.handleSubmit}
+            image_preview = {this.state.image_preview}
+            handleFileUpload = {this.handleFileUpload}
+            handleInputChange = {this.handleInputChange}
+            />
+        </div>
        </div>
+
     )
   }
 

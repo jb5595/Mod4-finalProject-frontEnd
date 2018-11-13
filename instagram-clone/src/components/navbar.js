@@ -3,11 +3,11 @@ import { NavLink, Link } from 'react-router-dom';
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
 
 const BaseSearchURL = "http://localhost:3000/api/v1/users/search/"
 const BaseUrl = "http://localhost:3000"
-library.add(faSearch)
+library.add(faPlusSquare)
 
 class NavBar extends React.Component {
   constructor(props){
@@ -24,6 +24,9 @@ class NavBar extends React.Component {
       .then(resp => resp.json())
       .then(results=> this.setState({searchResults:results}))
     }
+    else{
+      this.setState({searchResults:[]})
+    }
 
 
   }
@@ -31,12 +34,10 @@ class NavBar extends React.Component {
     return (
     <div>
     <div className="navbar navbar-expand">
-    <a className ="navbar-brand" href="#">Navbar</a>
-    <NavLink to= {`/profile`}>Profile</NavLink>
-    <NavLink className = "nav-item nav-link active" to="/createpost">Create Post</NavLink>
-    <NavLink className = "nav-item nav-link active" to="/feed">Feed</NavLink>
+    <NavLink to = "/feed" className ="navbar-brand  nav-item" href="#">Grammable</NavLink>
+    <NavLink className= "nav-item" to= {`/profile`}>Profile</NavLink>
     <NavLink className = "nav-item nav-link active" to="/explore">Explore</NavLink>
-    <button onClick = {this.props.logout }className = "nav-item btn btn-primary">Logout</button>
+    <NavLink className = "nav-item nav-link active add-post-icon" to="/createpost"><FontAwesomeIcon icon="plus-square" /></NavLink>
     <div className= "offset-4 row">
       <form className="form-inline navbar-form">
        <input onChange = {this.handleSearch} className="form-control mr-sm-2 navbar-search-bar" type="search" placeholder="Search" aria-label="Search"/>
@@ -55,6 +56,8 @@ class NavBar extends React.Component {
             </div>)}
        </div>
      </div>
+     <button onClick = {this.props.logout }className = "navbar-button btn btn-primary">Logout</button>
+
     </div>
     </div>
   );

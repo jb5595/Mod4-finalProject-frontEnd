@@ -48,6 +48,7 @@ class CreateUserForm extends React.Component{
             </div>
           </div>
           <button className = "btn btn-primary"> Create User </button>
+          <br/><br/>
           <Link to = "/"><button className = "btn btn-primary"> Go Back </button></Link>
         </form>
 

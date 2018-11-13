@@ -17,7 +17,8 @@ class LoginPage extends React.Component{
   }
   render(){
     return(
-      <div className = "login-container">
+      <div className = "welcome-page-container">
+        <div className = "login-form-container">
         <h3>Login</h3>
         {this.state.errors?<p className = "alert alert-danger">Username or Password is Incorrect</p> : null}
         <form onSubmit = {this.handleSubmit}>
@@ -34,6 +35,7 @@ class LoginPage extends React.Component{
           <button className = "btn btn-primary login-button">Login</button>
         </form>
        </div>
+     </div>
     )
   }
   handleInputChange = (e) =>{

@@ -1,23 +1,59 @@
+html{
+  height: 100%;
+}
+body{
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+
+ /* Set a specific height */
+ height: 100%;
+ /* Position and center the image to scale nicely on all screens */
+
+}
+
+
 .welcome-page-container{
-  margin-top: 7vw;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1508657794088-375f2f60c581?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4dfe68984607470ef65bbd674bd157a1&auto=format&fit=crop&w=1050&q=80");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  position: absolute;
   background-color: grey;
-  border-radius: 10px;
+  height: 120%;
+  width: 100%;
+  left:0%;
+  top: 0%;
   color: white;
-  border: black solid 1px;
-  max-height: 300px;
-  height: 40vw;
-  width: 35vw;
-  min-height: 200px;
-  min-width: 250px;
-  margin-left: auto;
-  margin-right: auto;
+}
+
+.create-user-form-container{
+  width: 40%;
+  margin: auto;
+}
+
+.btn-primary{
+  background-color: #133e5b;
+  border: solid #133e5b .2px;
+}
+.btn-outline-secondary{
+  color: #133e5b;
+  border-color: #133e5b;
+}
+.btn-outline-secondary:hover{
+  background-color: #133e5b;
+  color:white;
 }
 
 .welcome-page-header{
-  margin-top: 40px;
+  margin-top: 120px;
+  font-size: 45px;
 }
 .welcome-page-subcontent{
   margin-top: 7vw;
+}
+
+.welcome-text{
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 .profile-upload-button{
   margin-top: 30px;
@@ -36,6 +72,9 @@
 .login-button{
   float: left;
 }
-.login-container{
+.login-form-container{
+  width: 35%;
+  margin: auto;
   margin-top: 120px;
+
 }
