@@ -18,7 +18,7 @@ class Feed extends React.Component{
   render(){
     return(
       <div>
-        {this.state.posts ? this.state.posts.map(post=><PostCard currentUser ={this.props.currentUser} post = {post}/>) : null}
+        {this.state.posts ? this.state.posts.map(post=><PostCard removeBookMark = {this.props.removeBookMark} addBookMark = {this.props.addBookMark} currentUser ={this.props.currentUser} post = {post}/>) : null}
       </div>
 
     )

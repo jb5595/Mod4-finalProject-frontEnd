@@ -106,7 +106,7 @@ class ProfilePage extends Component{
             />
           </div>
         </div>
-        <ProfilePostsContainer posts = {this.state.user.posts}/>
+        <ProfilePostsContainer currentUser = {this.props.currentUser} user = {this.state.user} posts = {this.state.user.posts}/>
         </React.Fragment>
       )
   }

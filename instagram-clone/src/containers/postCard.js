@@ -14,7 +14,6 @@ class PostCard extends React.Component{
     super(props)
     this.state = {
       likes: this.props.post.likes,
-      bookmarked_items: this.props.currentUser.bookmarked_items,
       comments: this.props.post.comments,
       newComment: {
         content: "",
@@ -41,7 +40,7 @@ class PostCard extends React.Component{
       body: JSON.stringify(body)
     })
     .then(resp=> resp.json())
-    .then(bookmark =>this.setState({likes:[...this.state.bookmarked_items, bookmark]}))
+    .then(bookmark =>this.props.removeBookMark(bookmark))
   }
 
   handleBookMark = (e) =>{
@@ -61,7 +60,7 @@ class PostCard extends React.Component{
       body: JSON.stringify(body)
     })
     .then(resp=> resp.json())
-    .then(bookmark =>this.setState({likes:[...this.state.bookmarked_items, bookmark]}))
+    .then(bookmark => this.props.addBookMark(bookmark))
   }
 
   handleUnlike = (e) => {
@@ -87,7 +86,7 @@ class PostCard extends React.Component{
           caption = {this.props.post.caption}
           postId = {this.props.post.id}
          likes = {this.state.likes}
-         bookmarks = {this.state.bookmarked_items}
+         bookmarks = {this.props.currentUser.bookmarked_items}
          handleUnlike = {this.handleUnlike}
          handleLike = {this.handleLike}
          handleBookMark = {this.handleBookMark}

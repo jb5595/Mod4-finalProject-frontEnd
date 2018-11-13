@@ -30,6 +30,25 @@ class App extends Component {
   logout = () =>{
     this.setState({currentUser:null})
   }
+
+  addBookMark = (bookmark) =>{
+    this.setState({
+      currentUser:{
+        ...this.state.currentUser,
+        bookmarked_items: [...this.state.currentUser.bookmarked_items, bookmark]
+      }
+    })
+  }
+
+  removeBookMark = (bookmark) =>{
+    let newBookMarkedItems = this.state.currentUser.bookmarked_items.filter(bookmarked_item => bookmarked_item.id != bookmark.id)
+    this.setState({
+      currentUser:{
+        ...this.state.currentUser,
+        bookmarked_items: newBookMarkedItems
+      }
+    })
+  }
   render() {
     return (
       <Router>
@@ -52,11 +71,11 @@ class App extends Component {
         }} />
         <Route path='/posts/:id' render={(props)=> {
              let postId = props.match.params.id
-             return <PostShowPage currentUser = {this.state.currentUser} postId = {postId}/> }} />
+             return <PostShowPage removeBookMark = {this.removeBookMark} addBookMark = {this.addBookMark} currentUser = {this.state.currentUser} postId = {postId}/> }} />
         <Route path='/profile' render={(props)=><ProfilePage userId = {this.state.currentUser.id} currentUser = {this.state.currentUser}/>}/>
         <Route path = "/explore" render = {(props) => <ExploreFeed/>}/>
         <Route path = "/createPost" render={routerProps => <PostFormContainer currentUser = {this.state.currentUser}/>} />
-        <Route path = "/feed" render = {props=><Feed currentUser = {this.state.currentUser}/>}/>
+        <Route path = "/feed" render = {props=><Feed removeBookMark = {this.removeBookMark} addBookMark = {this.addBookMark} currentUser = {this.state.currentUser}/>}/>
         <Route path = "/login" render = {props=><Redirect to="/profile"/>}/>
         <Route path = "/createuser" render = {props=><Redirect to="/profile"/>}/>
         <Route path='/editprofile/:id' render={(props)=> {

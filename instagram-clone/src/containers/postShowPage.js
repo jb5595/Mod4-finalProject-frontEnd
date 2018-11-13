@@ -20,7 +20,7 @@ class PostShowPage extends React.Component{
   render(){
     return(
       <div>
-        {this.state.post?<PostCard currentUser ={this.props.currentUser} post = {this.state.post}/>:null}
+        {this.state.post?<PostCard removeBookMark = {this.props.removeBookMark} addBookMark = {this.props.addBookMark} currentUser ={this.props.currentUser} post = {this.state.post}/>:null}
       </div>
     )
   }
