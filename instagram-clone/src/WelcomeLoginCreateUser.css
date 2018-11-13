@@ -2,16 +2,19 @@ html{
   height: 100%;
 }
 body{
-  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
 
- /* Set a specific height */
  height: 100%;
- /* Position and center the image to scale nicely on all screens */
 
 }
 
 
 .welcome-page-container{
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+
+ /* Set a specific height */
+
+ /* Position and center the image to scale nicely on all screens */
+
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1508657794088-375f2f60c581?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4dfe68984607470ef65bbd674bd157a1&auto=format&fit=crop&w=1050&q=80");
   background-position: center;
   background-size: cover;

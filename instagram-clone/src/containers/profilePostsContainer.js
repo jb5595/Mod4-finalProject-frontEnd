@@ -44,7 +44,7 @@ class ProfilePostsContainer extends React.Component{
   }
 
   renderPosts(){
-    return this.state.postsToDisplay.map(post=><FeedImageSmall key = {post.id} postId = {post.id} image = {post.image}/>)
+    return this.state.postsToDisplay.reverse().map(post=><FeedImageSmall key = {post.id} author = {this.props.user.user_name} caption = {post.caption} postId = {post.id} image = {post.image}/>)
 
   }
 

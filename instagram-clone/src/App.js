@@ -96,6 +96,7 @@ class App extends Component {
             <Route path = "/posts" render = {props=><Redirect to="/"/>}/>
             <Route path = "/profile" render = {props=><Redirect to="/"/>}/>
             <Route path = "/createpost" render = {props=><Redirect to="/"/>}/>
+            <Route path = "/explore" render = {props=><Redirect to="/"/>}/>
             <Route path = "/feed" render = {props=><Redirect to="/"/>}/>
             <Route path='/editprofile/:id' render={(props)=> <Redirect to="/"/>}/>
           </div>
